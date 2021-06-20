@@ -1,5 +1,7 @@
+import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
+import React from 'react';
 import Head from 'next/head'
-import '../styles/globals.css'
+import theme from '../theme'
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -31,7 +33,17 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#317EFB" />
       </Head>
-      <Component {...pageProps} />
+      <React.StrictMode>
+        <ChakraProvider resetCSS theme={theme}>
+          <ColorModeProvider
+            options={{
+              useSystemColorMode: true,
+            }}
+          >
+            <Component {...pageProps} />
+          </ColorModeProvider>
+        </ChakraProvider>
+      </React.StrictMode>
     </>
   )
 }
