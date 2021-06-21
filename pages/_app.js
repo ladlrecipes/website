@@ -1,7 +1,10 @@
 import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
 import React from 'react';
+import { DefaultSeo } from 'next-seo'
 import Head from 'next/head'
 import theme from '../theme'
+
+import SEO from '../next-seo.config'
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -15,6 +18,7 @@ export default function MyApp({ Component, pageProps }) {
         />
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />
+        <link rel="icon" href="/favicon.ico" />
         <title>Ladl</title>
 
         <link rel="manifest" href="/manifest.json" />
@@ -36,10 +40,12 @@ export default function MyApp({ Component, pageProps }) {
       <React.StrictMode>
         <ChakraProvider resetCSS theme={theme}>
           <ColorModeProvider
+            value="light"
             options={{
               useSystemColorMode: true,
             }}
           >
+            <DefaultSeo {...SEO} />
             <Component {...pageProps} />
           </ColorModeProvider>
         </ChakraProvider>
