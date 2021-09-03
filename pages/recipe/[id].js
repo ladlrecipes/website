@@ -15,14 +15,15 @@ import {
   useQuery,
   gql,
 } from "@apollo/client";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { CheckCircleIcon, LinkIcon } from "@chakra-ui/icons";
-import { Hero } from "../components/Hero";
-import { Container } from "../components/Container";
-import { Main } from "../components/Main";
-import { DarkModeSwitch } from "../components/DarkModeSwitch";
-import { CTA } from "../components/CTA";
-import { Footer } from "../components/Footer";
+import { Hero } from "../../components/Hero";
+import { Container } from "../../components/Container";
+import { Main } from "../../components/Main";
+import { DarkModeSwitch } from "../../components/DarkModeSwitch";
+import { CTA } from "../../components/CTA";
+import { Footer } from "../../components/Footer";
 // import Header from '../components/Header'
 
 import { NextSeo } from "next-seo";
@@ -109,25 +110,25 @@ export const getStaticPaths = async () => {
   const data = await client
     .query({
       query: gql`
-    query getallrecipe {
-      allRecipe {
-        _id
-      }
-    }
-    `
+        query getallrecipe {
+          allRecipe {
+            _id
+          }
+        }
+      `,
     })
     .then((result) => result);
-    console.log(data);
+  console.log(data.data.allRecipe[0]);
 
   return {
-    paths: data.data._id.map((id) => ({
+    paths: data.data.allRecipe.map(({ _id }) => ({
       params: {
-        page: id,
+        id: _id,
       },
     })),
     fallback: false,
   };
-}
+};
 
 export const getStaticProps = async ({ params }) => {
   const client = new ApolloClient({
@@ -138,12 +139,12 @@ export const getStaticProps = async ({ params }) => {
     cache: new InMemoryCache(),
   });
 
-  // const data = "";
+  console.log(`params`, params);
   const data = await client
     .query({
       query: gql`
         query recipeDetails {
-          Recipe(id: "${params.page.id}") {
+          Recipe(id: "${params.id}") {
             title
             author {
               name
