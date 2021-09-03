@@ -5,66 +5,64 @@ import {
   List,
   ListIcon,
   ListItem,
-  Textarea
-} from '@chakra-ui/react'
+  Textarea,
+} from "@chakra-ui/react";
 import {
   ApolloClient,
   InMemoryCache,
+  createHttpLink,
   ApolloProvider,
   useQuery,
-  gql
-} from "@apollo/client"
-import { useState, useEffect } from 'react'
-import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
-import { Hero } from '../components/Hero'
-import { Container } from '../components/Container'
-import { Main } from '../components/Main'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { CTA } from '../components/CTA'
-import { Footer } from '../components/Footer'
+  gql,
+} from "@apollo/client";
+import { useState, useEffect } from "react";
+import { CheckCircleIcon, LinkIcon } from "@chakra-ui/icons";
+import { Hero } from "../components/Hero";
+import { Container } from "../components/Container";
+import { Main } from "../components/Main";
+import { DarkModeSwitch } from "../components/DarkModeSwitch";
+import { CTA } from "../components/CTA";
+import { Footer } from "../components/Footer";
 // import Header from '../components/Header'
 
-import { NextSeo } from 'next-seo'
+import { NextSeo } from "next-seo";
 
-const client = new ApolloClient({
-  uri: 'https://48p1r2roz4.sse.codesandbox.io',
-  cache: new InMemoryCache()
-});
-
-const Index = (data) => (
-  <ApolloProvider client={client}>
-    <Container height="100vh">
-      <NextSeo
-        title="Page Meta Title"
-        description="This will be the page meta description"
-        canonical="https://www.canonicalurl.ie/"
-        openGraph={{
-          url: 'https://www.canonicalurl.ie/',
-          title: 'Open Graph Title',
-          description: 'Open Graph Description',
-          images: [
-            {
-              url: 'https://www.example.ie/og-image-01.jpg',
-              width: 800,
-              height: 600,
-              alt: 'Og Image Alt',
-            },
-            {
-              url: 'https://www.example.ie/og-image-02.jpg',
-              width: 900,
-              height: 800,
-              alt: 'Og Image Alt Second',
-            },
-            { url: 'https://www.example.ie/og-image-03.jpg' },
-            { url: 'https://www.example.ie/og-image-04.jpg' },
-          ],
-        }}
+const Index = ({ data }) => (
+  <Container height="100vh">
+    <NextSeo
+      title="Page Meta Title"
+      description="This will be the page meta description"
+      canonical="https://www.canonicalurl.ie/"
+      openGraph={{
+        url: "https://www.canonicalurl.ie/",
+        title: "Open Graph Title",
+        description: "Open Graph Description",
+        images: [
+          {
+            url: "https://www.example.ie/og-image-01.jpg",
+            width: 800,
+            height: 600,
+            alt: "Og Image Alt",
+          },
+          {
+            url: "https://www.example.ie/og-image-02.jpg",
+            width: 900,
+            height: 800,
+            alt: "Og Image Alt Second",
+          },
+          { url: "https://www.example.ie/og-image-03.jpg" },
+          { url: "https://www.example.ie/og-image-04.jpg" },
+        ],
+      }}
+    />
+    {/* <Header /> */}
+    <Hero />
+    <Main>
+      <Textarea
+        placeholder="Here is a sample placeholder"
+        value={data.Recipe.title}
       />
-      {/* <Header /> */}
-      <Hero />
-      <Main>
-        <Textarea placeholder="Here is a sample placeholder" value={data}/>
-        {/* <Text>
+      {/* <Text>
           Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code>.
         </Text>
 
@@ -87,31 +85,60 @@ const Index = (data) => (
             </ChakraLink>
           </ListItem>
         </List> */}
-      </Main>
+    </Main>
 
-      <DarkModeSwitch />
-      <Footer>
-        <Text>Next ❤️ Chakra</Text>
-      </Footer>
-      <CTA />
-    </Container>
-  </ApolloProvider>
-)
+    {/* <DarkModeSwitch /> */}
+    <Footer>
+      <Text>Next ❤️ Chakra</Text>
+    </Footer>
+    <CTA />
+  </Container>
+);
+
+export default Index;
 
 export const getStaticProps = async () => {
-  const data = "";
-  client
-  .query({
-    query: gql`
-      query GetRates {
-        rates(currency: "USD") {
-          currency
+  const client = new ApolloClient({
+    ssrMode: true,
+    link: createHttpLink({
+      uri: "https://rnbzz1qb.api.sanity.io/v1/graphql/production/default",
+    }),
+    cache: new InMemoryCache(),
+  });
+
+  // const data = "";
+  const data = await client
+    .query({
+      query: gql`
+        query recipeDetails {
+          Recipe(id: "088be4b5-d78b-4d4b-9a73-1ead8337e826") {
+            title
+            author {
+              name
+            }
+            mainImage {
+              asset {
+                url
+              }
+            }
+            mealtype {
+              title
+            }
+            similar_dishes
+            ingredients {
+              name
+              unit
+              amount
+            }
+            bodyRaw
+          }
         }
-      }
-    `
-  })
-  .then(result => data = result);
+      `,
+    })
+    .then((result) => result);
+
+  console.log(`data`, data.data.Recipe);
   return {
-    props: { data },
+    props: { data: data.data },
   };
 };
