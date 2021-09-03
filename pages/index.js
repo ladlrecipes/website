@@ -13,6 +13,8 @@ import { Main } from '../components/Main'
 import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import { CTA } from '../components/CTA'
 import { Footer } from '../components/Footer'
+// import Header from '../components/Header'
+
 import { NextSeo } from 'next-seo'
 
 const Index = () => (
@@ -43,6 +45,7 @@ const Index = () => (
         ],
       }}
     />
+    {/* <Header /> */}
     <Hero />
     <Main>
       <Text>

@@ -42,6 +42,7 @@ export default function MyApp({ Component, pageProps }) {
           <ColorModeProvider
             value="light"
             options={{
+              initialColorMode: "light",
               useSystemColorMode: true,
             }}
           >
