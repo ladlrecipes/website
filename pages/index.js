@@ -13,7 +13,7 @@ const Index = ({ data }) => (
   <div>
     <ul>
       {data.allRecipe.map((recipe) => (
-        <li>
+        <li key={recipe._id}>
           <Link href={`/recipe/${recipe._id}`}>{recipe.title}</Link>
         </li>
       ))}
