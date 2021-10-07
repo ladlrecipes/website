@@ -39,6 +39,20 @@ export const getStaticProps = async () => {
           allRecipe {
             _id
             title
+            author {
+              name
+            }
+            mainImage {
+              asset {
+                url
+              }
+            }
+            mealtype {
+              title
+            }
+            categories {
+              _key
+            }
           }
         }
       `,
