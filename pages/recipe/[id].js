@@ -157,7 +157,7 @@ export const getStaticProps = async ({ params }) => {
             mealtype {
               title
             }
-            similar_dishes
+            similarDishes
             ingredients {
               name
               unit
