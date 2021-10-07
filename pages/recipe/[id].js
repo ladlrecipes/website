@@ -1,5 +1,8 @@
 import {
   Link as ChakraLink,
+  Heading,
+  Box,
+  Image,
   Text,
   Code,
   List,
@@ -24,6 +27,8 @@ import { Main } from "../../components/Main";
 import { DarkModeSwitch } from "../../components/DarkModeSwitch";
 import { CTA } from "../../components/CTA";
 import { Footer } from "../../components/Footer";
+import { BlockContent } from "@sanity/block-content-to-react";
+import { usePreviewSubscription, urlFor, PortableText } from '../../lib/sanity'
 // import Header from '../components/Header'
 
 import { NextSeo } from "next-seo";
@@ -31,7 +36,7 @@ import { NextSeo } from "next-seo";
 const Index = ({ data }) => (
   <Container height="100vh">
     <NextSeo
-      title="Page Meta Title"
+      title={data.Recipe.title}
       description="This will be the page meta description"
       canonical="https://www.canonicalurl.ie/"
       openGraph={{
@@ -56,13 +61,29 @@ const Index = ({ data }) => (
         ],
       }}
     />
-    {/* <Header /> */}
-    <Hero />
-    <Main>
+    <Heading>{data.Recipe.title}</Heading>
+    <Box boxSize="sm">
+      <Image src={data.Recipe.mainImage.asset.url} alt="Segun Adebayo" />
+    </Box>
+
+    <Text fontSize="lg">{data.Recipe.author.name}</Text>
+    <Text fontSize="lg">Mealtype: {data.Recipe.mealtype[0].title}</Text>
+
+
+    {/* <BlockContent blocks={data.Recipe.bodyRaw} /> */}
+
+    {/* <Text fontSize="lg">{data.Recipe.bodyRaw}</Text> */}
+
+    {/* <BlockContent blocks={data.Recipe.bodyRaw} /> */}
+    <BlockContent blocks={data.Recipe.body} serializers={serializers} />,
+
+
+    {/* <Main>
+
       <Textarea
         placeholder="Here is a sample placeholder"
         value={data.Recipe.title}
-      />
+      /> */}
       {/* <Text>
           Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code>.
         </Text>
@@ -86,13 +107,13 @@ const Index = ({ data }) => (
             </ChakraLink>
           </ListItem>
         </List> */}
-    </Main>
+    {/* </Main> */}
 
     {/* <DarkModeSwitch /> */}
-    <Footer>
+    {/* <Footer>
       <Text>Next ❤️ Chakra</Text>
-    </Footer>
-    <CTA />
+    </Footer> */}
+    {/* <CTA /> */}
   </Container>
 );
 
@@ -157,10 +178,8 @@ export const getStaticProps = async ({ params }) => {
             mealtype {
               title
             }
-            similarDishes
             ingredients {
               name
-              unit
               amount
             }
             bodyRaw
