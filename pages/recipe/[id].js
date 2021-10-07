@@ -1,5 +1,8 @@
 import {
   Link as ChakraLink,
+  Heading,
+  Box,
+  Image,
   Text,
   Code,
   List,
@@ -31,7 +34,7 @@ import { NextSeo } from "next-seo";
 const Index = ({ data }) => (
   <Container height="100vh">
     <NextSeo
-      title="Page Meta Title"
+      title={data.Recipe.title}
       description="This will be the page meta description"
       canonical="https://www.canonicalurl.ie/"
       openGraph={{
@@ -56,13 +59,16 @@ const Index = ({ data }) => (
         ],
       }}
     />
-    {/* <Header /> */}
-    <Hero />
-    <Main>
+    <Heading>{data.Recipe.title}</Heading>
+    <Box boxSize="sm">
+      <Image src="https://www.ladlrecipes.com/wp-content/uploads/2015/10/Seadas.png" alt="Segun Adebayo" />
+    </Box>
+    {/* <Main>
+
       <Textarea
         placeholder="Here is a sample placeholder"
         value={data.Recipe.title}
-      />
+      /> */}
       {/* <Text>
           Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code>.
         </Text>
@@ -86,13 +92,13 @@ const Index = ({ data }) => (
             </ChakraLink>
           </ListItem>
         </List> */}
-    </Main>
+    {/* </Main> */}
 
     {/* <DarkModeSwitch /> */}
-    <Footer>
+    {/* <Footer>
       <Text>Next ❤️ Chakra</Text>
-    </Footer>
-    <CTA />
+    </Footer> */}
+    {/* <CTA /> */}
   </Container>
 );
 
@@ -157,10 +163,8 @@ export const getStaticProps = async ({ params }) => {
             mealtype {
               title
             }
-            similar_dishes
             ingredients {
               name
-              unit
               amount
             }
             bodyRaw
