@@ -1,10 +1,11 @@
-import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
-import React from 'react';
-import { DefaultSeo } from 'next-seo'
-import Head from 'next/head'
-import theme from '../theme'
+import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react";
+import React from "react";
+import { DefaultSeo } from "next-seo";
+import Head from "next/head";
+import theme from "../theme";
+import Header from "../components/Header";
 
-import SEO from '../next-seo.config'
+import SEO from "../next-seo.config";
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -46,11 +47,12 @@ export default function MyApp({ Component, pageProps }) {
               useSystemColorMode: true,
             }}
           >
+            <Header />
             <DefaultSeo {...SEO} />
             <Component {...pageProps} />
           </ColorModeProvider>
         </ChakraProvider>
       </React.StrictMode>
     </>
-  )
+  );
 }
