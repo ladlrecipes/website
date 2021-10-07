@@ -27,8 +27,8 @@ import { Main } from "../../components/Main";
 import { DarkModeSwitch } from "../../components/DarkModeSwitch";
 import { CTA } from "../../components/CTA";
 import { Footer } from "../../components/Footer";
-import { BlockContent } from "@sanity/block-content-to-react";
-import { usePreviewSubscription, urlFor, PortableText } from '../../lib/sanity'
+import BlockContent from "@sanity/block-content-to-react";
+import { usePreviewSubscription, urlFor, PortableText } from "../../lib/sanity";
 // import Header from '../components/Header'
 
 import { NextSeo } from "next-seo";
@@ -65,26 +65,18 @@ const Index = ({ data }) => (
     <Box boxSize="sm">
       <Image src={data.Recipe.mainImage.asset.url} alt="Segun Adebayo" />
     </Box>
-
     <Text fontSize="lg">{data.Recipe.author.name}</Text>
     <Text fontSize="lg">Mealtype: {data.Recipe.mealtype[0].title}</Text>
-
-
     {/* <BlockContent blocks={data.Recipe.bodyRaw} /> */}
-
     {/* <Text fontSize="lg">{data.Recipe.bodyRaw}</Text> */}
-
-    {/* <BlockContent blocks={data.Recipe.bodyRaw} /> */}
-    <BlockContent blocks={data.Recipe.body} serializers={serializers} />,
-
-
+    <BlockContent blocks={data.Recipe.bodyRaw} />,
     {/* <Main>
 
       <Textarea
         placeholder="Here is a sample placeholder"
         value={data.Recipe.title}
       /> */}
-      {/* <Text>
+    {/* <Text>
           Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code>.
         </Text>
 
@@ -108,7 +100,6 @@ const Index = ({ data }) => (
           </ListItem>
         </List> */}
     {/* </Main> */}
-
     {/* <DarkModeSwitch /> */}
     {/* <Footer>
       <Text>Next ❤️ Chakra</Text>
