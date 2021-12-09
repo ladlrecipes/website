@@ -23,7 +23,7 @@ const Index = ({ data }) => (
         <Grid key={recipe.id}>
           <Box bg="red" w="100%" h="550" p={0} mb={5} color="white">
             <Heading position="relative" mb={4}>{recipe.title}</Heading>
-            <Image position="absolute" boxSize="10%" objectFit="cover" src={recipe.mainImage?.asset.url} alt={recipe.title} />
+            <Image position="absolute" boxSize="10%" objectFit="cover" src={recipe?.mainImage?.asset.url} alt={recipe?.title} />
           </Box>
         </Grid>
         //  <li key={recipe._id}>
