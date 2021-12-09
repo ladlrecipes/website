@@ -36,7 +36,7 @@ import { NextSeo } from "next-seo";
 const Index = ({ data }) => (
   <Container height="100vh">
     <NextSeo
-      title={data.Recipe.title}
+      title={data?.Recipe?.title}
       description="This will be the page meta description"
       canonical="https://www.canonicalurl.ie/"
       openGraph={{
@@ -61,15 +61,15 @@ const Index = ({ data }) => (
         ],
       }}
     />
-    <Heading>{data.Recipe.title}</Heading>
+    <Heading>{data?.Recipe?.title}</Heading>
     <Box boxSize="sm">
-      <Image src={data.Recipe.mainImage.asset.url} alt="Segun Adebayo" />
+      <Image src={data?.Recipe?.mainImage?.asset?.url} alt="Segun Adebayo" />
     </Box>
-    <Text fontSize="lg">{data.Recipe.author.name}</Text>
-    <Text fontSize="lg">Mealtype: {data.Recipe.mealtype[0].title}</Text>
+    <Text fontSize="lg">{data?.Recipe?.author?.name}</Text>
+    {/* <Text fontSize="lg">Mealtype: {data?.Recipe?.mealtype[0]?.title}</Text> */}
     {/* <BlockContent blocks={data.Recipe.bodyRaw} /> */}
     {/* <Text fontSize="lg">{data.Recipe.bodyRaw}</Text> */}
-    <BlockContent blocks={data.Recipe.bodyRaw} />,
+    <BlockContent blocks={data?.Recipe?.bodyRaw} />,
     {/* <Main>
 
       <Textarea
