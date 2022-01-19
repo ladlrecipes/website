@@ -4,3 +4,8 @@
   padding-right: 8px;
   max-width: 750px;
 }
+
+.homeContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}

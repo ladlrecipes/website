@@ -14,22 +14,14 @@ import Link from "next/link";
 
 const Index = ({ data }) => (
   <div>
-    <ul>
+    <ul className="homeContainer">
       {data.allRecipe.map((recipe) => (
-        <Grid key={recipe.id}>
-          <Box bg="red" w="100%" h="550" p={0} mb={5} color="white">
-            <Heading position="relative" mb={4}>
-              {recipe.title}
-            </Heading>
-            <Image
-              position="absolute"
-              boxSize="10%"
-              objectFit="cover"
-              src={recipe?.mainImage?.asset.url}
-              alt={recipe?.title}
-            />
-          </Box>
-        </Grid>
+        <div key={recipe.id}>
+          <div>
+            <Heading mb={4}>{recipe.title}</Heading>
+            <Image src={recipe?.mainImage?.asset.url} alt={recipe?.title} />
+          </div>
+        </div>
         //  <li key={recipe._id}>
         //    <Box bg="tomato" w="100%" p={4} pb={10} color="white">
         //    {recipe.title}
