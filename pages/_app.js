@@ -7,6 +7,8 @@ import Header from "../components/Header";
 
 import SEO from "../next-seo.config";
 
+import "../styles/global.modules.css";
+
 export default function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -47,9 +49,11 @@ export default function MyApp({ Component, pageProps }) {
               useSystemColorMode: true,
             }}
           >
-            <Header />
-            <DefaultSeo {...SEO} />
-            <Component {...pageProps} />
+            <div className={"gutter"}>
+              <Header />
+              <DefaultSeo {...SEO} />
+              <Component {...pageProps} />
+            </div>
           </ColorModeProvider>
         </ChakraProvider>
       </React.StrictMode>
