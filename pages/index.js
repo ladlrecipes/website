@@ -17,9 +17,8 @@ const Index = ({ data }) => (
     <ul className="homeContainer">
       {data.allRecipe.map((recipe) => (
         <div key={recipe.id}>
-          <div>
-            <Heading mb={4}>{recipe.title}</Heading>
-            <Image src={recipe?.mainImage?.asset.url} alt={recipe?.title} />
+          <div className="cardContainer" style={{backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.30), rgba(0, 0, 0, 0.40)), url('${recipe?.mainImage?.asset.url}')`}}>
+            <p className="cardText">{recipe.title}</p>
           </div>
         </div>
         //  <li key={recipe._id}>
