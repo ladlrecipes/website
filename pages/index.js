@@ -6,24 +6,28 @@ import {
   useQuery,
   gql,
 } from "@apollo/client";
-import { 
-  Box,
-  Grid,
-  Image,
-  Heading
-} from "@chakra-ui/react"
+import { Box, Grid, Image, Heading } from "@chakra-ui/react";
+
+// import styles from "../styles/Shared.module.css";
 
 import Link from "next/link";
 
 const Index = ({ data }) => (
   <div>
     <ul>
-      {data.allRecipe.map((recipe) => 
-      (
+      {data.allRecipe.map((recipe) => (
         <Grid key={recipe.id}>
           <Box bg="red" w="100%" h="550" p={0} mb={5} color="white">
-            <Heading position="relative" mb={4}>{recipe.title}</Heading>
-            <Image position="absolute" boxSize="10%" objectFit="cover" src={recipe?.mainImage?.asset.url} alt={recipe?.title} />
+            <Heading position="relative" mb={4}>
+              {recipe.title}
+            </Heading>
+            <Image
+              position="absolute"
+              boxSize="10%"
+              objectFit="cover"
+              src={recipe?.mainImage?.asset.url}
+              alt={recipe?.title}
+            />
           </Box>
         </Grid>
         //  <li key={recipe._id}>
@@ -33,8 +37,7 @@ const Index = ({ data }) => (
 
         //   {/* <Link href={`/recipe/${recipe._id}`}>{recipe.title}</Link> */}
         // </li>
-      )
-      )}
+      ))}
     </ul>
   </div>
 );
