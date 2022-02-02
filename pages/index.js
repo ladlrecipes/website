@@ -17,9 +17,11 @@ const Index = ({ data }) => (
     <ul className="homeContainer">
       {data.allRecipe.map((recipe) => (
         <div key={recipe.id}>
+          <Link href={`/recipe/${recipe._id}`}>
           <div className="cardContainer" style={{backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.30), rgba(0, 0, 0, 0.40)), url('${recipe?.mainImage?.asset.url}')`}}>
             <p className="cardText">{recipe.title}</p>
           </div>
+          </Link>
         </div>
         //  <li key={recipe._id}>
         //    <Box bg="tomato" w="100%" p={4} pb={10} color="white">
