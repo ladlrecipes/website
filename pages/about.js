@@ -14,7 +14,7 @@ import Link from "next/link";
 
 const About = ({ data }) => (
   <div>
-    Yo Jonathan
+    Yo Jonathan its Tor
     <ul className="homeContainer">
       {data.allRecipe.map((recipe) => (
         <div key={recipe.id}>

@@ -19,7 +19,7 @@
   background-color: grey;
   background-size: cover;
   background-position: center;
-  border-radius: 15px;
+  border-radius: 0px;
   position: relative;
 }
 
@@ -31,4 +31,5 @@
   position: absolute;
   bottom: 0.7em;
   left: 0.7em;
+  background-color: rgba(128, 128, 128, 0.692);
 }
