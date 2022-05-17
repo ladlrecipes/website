@@ -106,8 +106,7 @@ const MenuLinks = ({ isOpen }) => {
         direction={["column", "row", "row", "row"]}
         pt={[4, 4, 0, 0]}
       >
-        <MenuItem to="/">Home</MenuItem>
-        <MenuItem to="/how">How It works </MenuItem>
+        <MenuItem to="/about">How It works </MenuItem>
       </Stack>
     </Box>
   );
@@ -122,7 +121,7 @@ const NavBarContainer = ({ children, ...props }) => {
       wrap="wrap"
       w="100%"
       mb={8}
-      p={8}
+      pt={8}
       bg={["primary.500", "primary.500", "transparent", "transparent"]}
       color={["black", "black", "primary.700", "primary.700"]}
       {...props}

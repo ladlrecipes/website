@@ -7,6 +7,8 @@ import Header from "../components/Header";
 
 import SEO from "../next-seo.config";
 
+import "../styles/global.modules.css";
+
 export default function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -19,18 +21,18 @@ export default function MyApp({ Component, pageProps }) {
         />
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/LadL_favicon.ico" />
         <title>Ladl</title>
 
         <link rel="manifest" href="/manifest.json" />
         <link
-          href="/icons/favicon-16x16.png"
+          href="/LadL_favicon.png"
           rel="icon"
           type="image/png"
           sizes="16x16"
         />
         <link
-          href="/icons/favicon-32x32.png"
+          href="/LadL_favicon.png"
           rel="icon"
           type="image/png"
           sizes="32x32"
@@ -47,9 +49,11 @@ export default function MyApp({ Component, pageProps }) {
               useSystemColorMode: true,
             }}
           >
-            <Header />
-            <DefaultSeo {...SEO} />
-            <Component {...pageProps} />
+            <div className={"gutter"}>
+              <Header />
+              <DefaultSeo {...SEO} />
+              <Component {...pageProps} />
+            </div>
           </ColorModeProvider>
         </ChakraProvider>
       </React.StrictMode>
